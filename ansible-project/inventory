@@ -1,0 +1,5 @@
+[webservers]
+192.168.56.101  # Web server
+
+[dbservers]
+192.168.56.102  # Database server

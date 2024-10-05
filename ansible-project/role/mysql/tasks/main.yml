@@ -1,0 +1,24 @@
+---
+- name: Install MySQL server
+  ansible.builtin.package:
+    name: mysql-server  # Use 'mariadb-server' for CentOS/RHEL
+    state: present
+
+- name: Start and enable MySQL
+  ansible.builtin.service:
+    name: mysql
+    state: started
+    enabled: yes
+
+- name: Secure MySQL installation and create database and user
+  ansible.builtin.mysql_user:
+    name: user
+    password: password
+    priv: 'mydatabase.*:ALL'
+    host: "%"
+    state: present
+
+- name: Create a MySQL database
+  ansible.builtin.mysql_db:
+    name: mydatabase
+    state: present
